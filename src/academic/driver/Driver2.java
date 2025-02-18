@@ -73,10 +73,10 @@ public class Driver2 {
                                         enrollments.add(new Enrollment(courseCode, studentNim, academicYear, semester));
                                         // System.out.println("Added enrollment: " + courseCode + " - " + studentNim);
                                     } else {
-                                        // System.out.println("invalid student|" + studentNim);
+                                        System.out.println("invalid student|" + studentNim);
                                     }
                                 } else {
-                                    // System.out.println("invalid course|" + courseCode);
+                                    System.out.println("invalid course|" + courseCode);
                                 }
                             } else {
                                 // System.out.println("Enrollment already exists: " + courseCode + " - " + studentNim);
