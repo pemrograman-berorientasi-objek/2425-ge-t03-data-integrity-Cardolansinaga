@@ -39,7 +39,11 @@ public class Driver2 {
                             String grade = segments[4];
                             if (!isCourseExist(courses, code)) {
                                 courses.add(new Course(code, name, credits, grade));
+                            } else {
+                                System.out.println("Course already exists: " + code);
                             }
+                        } else {
+                            System.out.println("Invalid input format for course-add. Please enter data in the format: course-add#code#name#credits#grade");
                         }
                         break;
                     case "student-add":
@@ -50,7 +54,11 @@ public class Driver2 {
                             String prodi = segments[4];
                             if (!isStudentExist(students, nim)) {
                                 students.add(new Student(nim, nama, angkatan, prodi));
+                            } else {
+                                System.out.println("Student already exists: " + nim);
                             }
+                        } else {
+                            System.out.println("Invalid input format for student-add. Please enter data in the format: student-add#nim#nama#angkatan#prodi");
                         }
                         break;
                     case "enrollment-add":
@@ -69,20 +77,35 @@ public class Driver2 {
                                 } else {
                                     System.out.println("invalid course|" + courseCode);
                                 }
+                            } else {
+                                System.out.println("Enrollment already exists: " + courseCode + " - " + studentNim);
                             }
+                        } else {
+                            System.out.println("Invalid input format for enrollment-add. Please enter data in the format: enrollment-add#courseCode#studentNim#academicYear#semester");
                         }
                         break;
                     default:
+                        System.out.println("Unknown command: " + command);
                         break;
                 }
+            } else {
+                System.out.println("Invalid input format. Please enter a valid command.");
             }
         }
 
-        // Mengurutkan daftar students berdasarkan NIM
+        // Mengurutkan daftar courses berdasarkan kode mata kuliah (NIM)
+        Collections.sort(courses, new Comparator<Course>() {
+            @Override
+            public int compare(Course c1, Course c2) {
+                return c1.getCode().compareTo(c2.getCode());
+            }
+        });
+
+        // Mengurutkan daftar students berdasarkan angkatan terbesar
         Collections.sort(students, new Comparator<Student>() {
             @Override
             public int compare(Student s1, Student s2) {
-                return s1.getNim().compareTo(s2.getNim());
+                return Integer.compare(s2.getAngkatan(), s1.getAngkatan());
             }
         });
 
