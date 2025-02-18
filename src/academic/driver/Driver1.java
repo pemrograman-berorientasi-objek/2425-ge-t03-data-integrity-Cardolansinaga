@@ -6,7 +6,9 @@ import academic.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Collections;
 
+import java.util.Comparator;
 /**
  * 12S23006 - Cardolan Sinaga
  * 12S23050 - Theresia Silaban
@@ -90,6 +92,12 @@ public class Driver1 {
             }
         }
 
+        Collections.sort(courses, new Comparator<Course>() {
+            @Override
+            public int compare(Course c1, Course c2) {
+                return c1.getCode().compareTo(c2.getCode());
+            }
+        });
         for (int i = 0; i < courses.size(); i++) {
             System.out.println(courses.get(i).getCode() + "|" + courses.get(i).getName() + "|" + courses.get(i).getCredits() + "|" + courses.get(i).getGrade());
         }
