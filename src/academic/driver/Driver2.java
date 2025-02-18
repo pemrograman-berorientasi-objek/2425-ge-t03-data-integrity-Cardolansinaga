@@ -37,12 +37,12 @@ public class Driver2 {
                             String grade = segments[4];
                             if (!isCourseExist(courses, code)) {
                                 courses.add(new Course(code, name, credits, grade));
-                                System.out.println("Added course: " + code);
+                                // System.out.println("Added course: " + code);
                             } else {
-                                System.out.println("Course already exists: " + code);
+                                // System.out.println("Course already exists: " + code);
                             }
                         } else {
-                            System.out.println("Invalid input format for course-add. Please enter data in the format: course-add#code#name#credits#grade");
+                            // System.out.println("Invalid input format for course-add. Please enter data in the format: course-add#code#name#credits#grade");
                         }
                         break;
                     case "student-add":
@@ -53,12 +53,12 @@ public class Driver2 {
                             String prodi = segments[4];
                             if (!isStudentExist(students, nim)) {
                                 students.add(new Student(nim, nama, angkatan, prodi));
-                                System.out.println("Added student: " + nim);
+                                // System.out.println("Added student: " + nim);
                             } else {
-                                System.out.println("Student already exists: " + nim);
+                                // System.out.println("Student already exists: " + nim);
                             }
                         } else {
-                            System.out.println("Invalid input format for student-add. Please enter data in the format: student-add#nim#nama#angkatan#prodi");
+                            // System.out.println("Invalid input format for student-add. Please enter data in the format: student-add#nim#nama#angkatan#prodi");
                         }
                         break;
                     case "enrollment-add":
@@ -71,26 +71,26 @@ public class Driver2 {
                                 if (isCourseExist(courses, courseCode)) {
                                     if (isStudentExist(students, studentNim)) {
                                         enrollments.add(new Enrollment(courseCode, studentNim, academicYear, semester));
-                                        System.out.println("Added enrollment: " + courseCode + " - " + studentNim);
+                                        // System.out.println("Added enrollment: " + courseCode + " - " + studentNim);
                                     } else {
-                                        System.out.println("invalid student|" + studentNim);
+                                        // System.out.println("invalid student|" + studentNim);
                                     }
                                 } else {
-                                    System.out.println("invalid course|" + courseCode);
+                                    // System.out.println("invalid course|" + courseCode);
                                 }
                             } else {
-                                System.out.println("Enrollment already exists: " + courseCode + " - " + studentNim);
+                                // System.out.println("Enrollment already exists: " + courseCode + " - " + studentNim);
                             }
                         } else {
-                            System.out.println("Invalid input format for enrollment-add. Please enter data in the format: enrollment-add#courseCode#studentNim#academicYear#semester");
+                            // System.out.println("Invalid input format for enrollment-add. Please enter data in the format: enrollment-add#courseCode#studentNim#academicYear#semester");
                         }
                         break;
                     default:
-                        System.out.println("Unknown command: " + command);
+                        // System.out.println("Unknown command: " + command);
                         break;
                 }
             } else {
-                System.out.println("Invalid input format. Please enter a valid command.");
+                // System.out.println("Invalid input format. Please enter a valid command.");
             }
         }
 
