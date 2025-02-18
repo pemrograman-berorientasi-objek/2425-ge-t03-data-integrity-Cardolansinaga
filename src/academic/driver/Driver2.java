@@ -78,14 +78,6 @@ public class Driver2 {
             }
         }
 
-        // Mengurutkan daftar courses berdasarkan kode mata kuliah
-        Collections.sort(courses, new Comparator<Course>() {
-            @Override
-            public int compare(Course c1, Course c2) {
-                return c1.getCode().compareTo(c2.getCode());
-            }
-        });
-
         // Mengurutkan daftar students berdasarkan NIM
         Collections.sort(students, new Comparator<Student>() {
             @Override
@@ -94,15 +86,19 @@ public class Driver2 {
             }
         });
 
-        // Mengurutkan daftar enrollments berdasarkan courseCode dan studentNim
+        // Mengurutkan daftar enrollments berdasarkan academicYear yang lebih besar
         Collections.sort(enrollments, new Comparator<Enrollment>() {
             @Override
             public int compare(Enrollment e1, Enrollment e2) {
-                int courseComparison = e1.getCourseCode().compareTo(e2.getCourseCode());
-                if (courseComparison != 0) {
-                    return courseComparison;
-                }
-                return e1.getStudentNim().compareTo(e2.getStudentNim());
+                return e2.getAcademicYear().compareTo(e1.getAcademicYear());
+            }
+        });
+
+        // Mengurutkan daftar enrollments berdasarkan semester yang lebih besar
+        Collections.sort(enrollments, new Comparator<Enrollment>() {
+            @Override
+            public int compare(Enrollment e1, Enrollment e2) {
+                return e2.getSemester().compareTo(e1.getSemester());
             }
         });
 
