@@ -4,11 +4,11 @@ import academic.model.Course;
 import academic.model.Enrollment;
 import academic.model.Student;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Collections;
 
+import java.util.Comparator;
 /**
  * 12S23006 - Cardolan Sinaga
  * 12S23050 - Theresia Silaban
@@ -39,11 +39,12 @@ public class Driver1 {
                             String grade = segments[4];
                             if (!isCourseExist(courses, code)) {
                                 courses.add(new Course(code, name, credits, grade));
+                                // System.out.println("Added course: " + code);
                             } else {
-                                System.out.println("Course already exists: " + code);
+                                // System.out.println("Course already exists: " + code);
                             }
                         } else {
-                            System.out.println("Invalid input format for course-add. Please enter data in the format: course-add#code#name#credits#grade");
+                            // System.out.println("Invalid input format for course-add. Please enter data in the format: course-add#code#name#credits#grade");
                         }
                         break;
                     case "student-add":
@@ -54,11 +55,12 @@ public class Driver1 {
                             String prodi = segments[4];
                             if (!isStudentExist(students, nim)) {
                                 students.add(new Student(nim, nama, angkatan, prodi));
+                                // System.out.println("Added student: " + nim);
                             } else {
-                                System.out.println("Student already exists: " + nim);
+                                // System.out.println("Student already exists: " + nim);
                             }
                         } else {
-                            System.out.println("Invalid input format for student-add. Please enter data in the format: student-add#nim#nama#angkatan#prodi");
+                            // System.out.println("Invalid input format for student-add. Please enter data in the format: student-add#nim#nama#angkatan#prodi");
                         }
                         break;
                     case "enrollment-add":
@@ -70,67 +72,42 @@ public class Driver1 {
                             if (!isEnrollmentExist(enrollments, courseCode, studentNim, academicYear, semester)) {
                                 if (isCourseExist(courses, courseCode) && isStudentExist(students, studentNim)) {
                                     enrollments.add(new Enrollment(courseCode, studentNim, academicYear, semester));
+                                    // System.out.println("Added enrollment: " + courseCode + " - " + studentNim);
                                 } else {
-                                    System.out.println("Invalid course or student for enrollment.");
+                                    // System.out.println("Invalid course or student for enrollment.");
                                 }
                             } else {
-                                System.out.println("Enrollment already exists: " + courseCode + " - " + studentNim);
+                                // System.out.println("Enrollment already exists: " + courseCode + " - " + studentNim);
                             }
                         } else {
-                            System.out.println("Invalid input format for enrollment-add. Please enter data in the format: enrollment-add#courseCode#studentNim#academicYear#semester");
+                            // System.out.println("Invalid input format for enrollment-add. Please enter data in the format: enrollment-add#courseCode#studentNim#academicYear#semester");
                         }
                         break;
                     default:
-                        System.out.println("Unknown command: " + command);
+                        // System.out.println("Unknown command: " + command);
                         break;
                 }
             } else {
-                System.out.println("Invalid input format. Please enter a valid command.");
+                // System.out.println("Invalid input format. Please enter a valid command.");
             }
         }
 
-        // Mengurutkan daftar courses berdasarkan kode mata kuliah (NIM)
         Collections.sort(courses, new Comparator<Course>() {
             @Override
             public int compare(Course c1, Course c2) {
                 return c1.getCode().compareTo(c2.getCode());
             }
         });
-
-        // Mengurutkan daftar students berdasarkan NIM
-        Collections.sort(students, new Comparator<Student>() {
-            @Override
-            public int compare(Student s1, Student s2) {
-                return s1.getNim().compareTo(s2.getNim());
-            }
-        });
-
-        // Mengurutkan daftar enrollments berdasarkan academicYear yang lebih besar
-        Collections.sort(enrollments, new Comparator<Enrollment>() {
-            @Override
-            public int compare(Enrollment e1, Enrollment e2) {
-                return e2.getAcademicYear().compareTo(e1.getAcademicYear());
-            }
-        });
-
-        // Mengurutkan daftar enrollments berdasarkan semester yang lebih besar
-        Collections.sort(enrollments, new Comparator<Enrollment>() {
-            @Override
-            public int compare(Enrollment e1, Enrollment e2) {
-                return e2.getSemester().compareTo(e1.getSemester());
-            }
-        });
-
-        for (Course course : courses) {
-            System.out.println(course.getCode() + "|" + course.getName() + "|" + course.getCredits() + "|" + course.getGrade());
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.println(courses.get(i).getCode() + "|" + courses.get(i).getName() + "|" + courses.get(i).getCredits() + "|" + courses.get(i).getGrade());
         }
 
-        for (Student student : students) {
-            System.out.println(student.getNim() + "|" + student.getNama() + "|" + student.getAngkatan() + "|" + student.getProdi());
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println(students.get(i).getNim() + "|" + students.get(i).getNama() + "|" + students.get(i).getAngkatan() + "|" + students.get(i).getProdi());
         }
 
-        for (Enrollment enrollment : enrollments) {
-            System.out.println(enrollment.getCourseCode() + "|" + enrollment.getStudentNim() + "|" + enrollment.getAcademicYear() + "|" + enrollment.getSemester() + "|" + enrollment.getGrade());
+        for (int i = 0; i < enrollments.size(); i++) {
+            System.out.println(enrollments.get(i).getCourseCode() + "|" + enrollments.get(i).getStudentNim() + "|" + enrollments.get(i).getAcademicYear() + "|" + enrollments.get(i).getSemester() + "|" + enrollments.get(i).getGrade());
         }
 
         scanner.close();
